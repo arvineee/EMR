@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin: 5px 0;
+}
+
+strong {
+    color: #555;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <form action="/" method="get">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+        {% if weather_data %}
+            <h2>Weather in {{ weather_data['location'] }}</h2><br>
+            <p><strong>Region:</strong> {{ weather_data['region'] }}</p><br>
+            <p><strong>Country:</strong> {{ weather_data['country'] }}</p><br>
+            <p><strong>Temperature:</strong> {{ weather_data['temp_c'] }}°C</p><br>
+            <p><strong>Condition:</strong> {{ weather_data['condition'] }}</p><br>
+            <p><strong>Humidity:</strong> {{ weather_data['humidity'] }}%</p><br>
+            <p><strong>Wind Speed:</strong> {{ weather_data['wind_kph'] }} kph</p><br>
+            <p><strong>Current Time:</strong> {{ weather_data['time'] }}</p><br>
+       
+        {% endif %}
+    </div>
+</body>
+</html>
